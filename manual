@@ -91,16 +91,13 @@ if key == "x" then
     getgenv().i_said_right_foot_creep = true
     game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass('Humanoid').AutoRotate  = false
 
-
 end
 end)
 ssss.KeyUp:connect(function(key)
 if key == "x" then
 
-       
-        getgenv().i_said_right_foot_creep = false
+    getgenv().i_said_right_foot_creep = false
     game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass('Humanoid').AutoRotate  = true
-    
 
 end
 end)
@@ -109,17 +106,13 @@ end
 end)
 local nigger = getClosestPlayer()
 			if game:GetService("Players").LocalPlayer.Character.PrimaryPart  and getClosestPlayer() ~= nil and i_said_right_foot_creep == true then
-if game.Players.LocalPlayer.Character.Humanoid.WalkSpeed == getClosestPlayer().Character.Humanoid.WalkSpeed then
-game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = getClosestPlayer().Character.Humanoid.WalkSpeed +1
-	end        
-		        
-				local chrPos=game:GetService("Players").LocalPlayer.Character.PrimaryPart.Position
-				local tPos=getClosestPlayer().Character:FindFirstChild("HumanoidRootPart").Position
-				local modTPos=Vector3.new(tPos.X,chrPos.Y,tPos.Z)
-				local newCF=CFrame.new(chrPos,modTPos)
-				
-		
-				game:GetService("Players").LocalPlayer.Character:SetPrimaryPartCFrame(newCF)
+
+local TargetPart = getClosestPlayer().Character.HumanoidRootPart
+local Part = game.Players.LocalPlayer.Character.HumanoidRootPart
+local RotateX, RotateY, RotateZ = 0, 0, 0
+
+Part.CFrame = CFrame.new(Part.Position, TargetPart.Position) * CFrame.Angles(math.rad(0), math.rad(25), math.rad(0))
+
 			game:GetService("Players").LocalPlayer.Character.Humanoid:MoveTo(getClosestPlayer().Character.HumanoidRootPart.CFrame * Vector3.new(-3, 0, 0))
 if getClosestPlayer().Character.Humanoid:GetState() == Enum.HumanoidStateType.Freefall then
 game.Players.LocalPlayer.Character.Humanoid.Jump = true
@@ -132,3 +125,10 @@ end
     
     end)
 end
+   local stateType = Enum.HumanoidStateType
+
+local character = game.Players.LocalPlayer.Character
+local humanoid = character:WaitForChild("Humanoid")
+
+humanoid:SetStateEnabled(stateType.FallingDown, false)
+humanoid:SetStateEnabled(stateType.Ragdoll, false)
