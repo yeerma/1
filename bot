@@ -105,15 +105,12 @@ end)
 local nigger = getClosestPlayer()
 			if game:GetService("Players").LocalPlayer.Character.PrimaryPart  and getClosestPlayer() ~= nil and i_said_right_foot_creep == true then
 
-	        
-		        
-				local chrPos=game:GetService("Players").LocalPlayer.Character.PrimaryPart.Position
-				local tPos=getClosestPlayer().Character:FindFirstChild("HumanoidRootPart").Position
-				local modTPos=Vector3.new(tPos.X,chrPos.Y,tPos.Z)
-				local newCF=CFrame.new(chrPos,modTPos)
-				
-		
-				game:GetService("Players").LocalPlayer.Character:SetPrimaryPartCFrame(newCF)
+local TargetPart = getClosestPlayer().Character.HumanoidRootPart
+local Part = game.Players.LocalPlayer.Character.HumanoidRootPart
+local RotateX, RotateY, RotateZ = 0, 0, 0
+
+Part.CFrame = CFrame.new(Part.Position, TargetPart.Position) * CFrame.Angles(math.rad(0), math.rad(25), math.rad(0))
+
 			game:GetService("Players").LocalPlayer.Character.Humanoid:MoveTo(getClosestPlayer().Character.HumanoidRootPart.CFrame * Vector3.new(-3, 0, 0))
 if getClosestPlayer().Character.Humanoid:GetState() == Enum.HumanoidStateType.Freefall then
 game.Players.LocalPlayer.Character.Humanoid.Jump = true
@@ -126,3 +123,10 @@ end
     
     end)
 end
+   local stateType = Enum.HumanoidStateType
+
+local character = game.Players.LocalPlayer.Character
+local humanoid = character:WaitForChild("Humanoid")
+
+humanoid:SetStateEnabled(stateType.FallingDown, false)
+humanoid:SetStateEnabled(stateType.Ragdoll, false)
