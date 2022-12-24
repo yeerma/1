@@ -103,47 +103,23 @@ end)
 end
 end)
 local nigger = getClosestPlayer()
-			if game:GetService("Players").LocalPlayer.Character.PrimaryPart and i_said_right_foot_creep == true and nigger ~= nil then
+			if game:GetService("Players").LocalPlayer.Character.PrimaryPart  and getClosestPlayer() ~= nil and i_said_right_foot_creep == true then
 
-						    if nigger.Character:FindFirstChild("Humanoid").Jump == true then
-		       game.Players.LocalPlayer.Character.Humanoid.Jump = true
-		        end
+	        
 		        
 				local chrPos=game:GetService("Players").LocalPlayer.Character.PrimaryPart.Position
-				local tPos=nigger.Character:FindFirstChild("HumanoidRootPart").Position
+				local tPos=getClosestPlayer().Character:FindFirstChild("HumanoidRootPart").Position
 				local modTPos=Vector3.new(tPos.X,chrPos.Y,tPos.Z)
 				local newCF=CFrame.new(chrPos,modTPos)
 				
 		
 				game:GetService("Players").LocalPlayer.Character:SetPrimaryPartCFrame(newCF)
-			game:GetService("Players").LocalPlayer.Character.Humanoid:MoveTo(nigger.Character.HumanoidRootPart.CFrame * Vector3.new(-3, 0, 0))
-
+			game:GetService("Players").LocalPlayer.Character.Humanoid:MoveTo(getClosestPlayer().Character.HumanoidRootPart.CFrame * Vector3.new(-3, 0, 0))
+if getClosestPlayer().Character.Humanoid:GetState() == Enum.HumanoidStateType.Freefall then
+game.Players.LocalPlayer.Character.Humanoid.Jump = true
+end
                
-local Player = game:GetService("Players").LocalPlayer
-local Character = Player.Character or Player.CharacterAdded:Wait()
-local HumanoidRP = Character:WaitForChild("HumanoidRootPart")
-local Origin = HumanoidRP.Position
-local direction = Vector3.new(0,-100000,0)
 
-local ray = Ray.new(Origin, direction)
-    local Hit = game:GetService("Workspace"):FindPartOnRay(ray, Character)
-
-    if Hit and Hit.Name ~= "everybodywannabeasupastar" then
-for i,v in next, game.Workspace:GetChildren() do
-    if v.Name == "everybodywannabeasupastar" then
-    v:Destroy()
-    end
-    end
-else
-local Float = Instance.new('Part')
-			Float.Name = "everybodywannabeasupastar"
-			Float.Parent = game.Workspace
-			Float.Transparency = 1
-			Float.Size = Vector3.new(2,0.2,1.5)
-			Float.Anchored = true
-			local FloatValue = -3.1
-			Float.CFrame = HumanoidRP.CFrame * CFrame.new(0,-3.1,0)
-    end
 
 
 		end
