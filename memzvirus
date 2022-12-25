@@ -1,0 +1,48 @@
+local All_Black_People_Should_Pick_Cotton = false
+game.Players.LocalPlayer.Character.ChildAdded:Connect(function(tool)
+	if tool:IsA("Tool") then
+		
+	tool.Handle.Touched:Connect(function(hit)
+		if hit.Parent:FindFirstChildWhichIsA("Humanoid")and All_Black_People_Should_Pick_Cotton == false then
+                for i,v in next, hit.Parent:GetChildren() do
+                    if v:IsA("BasePart") then
+                        
+                        firetouchinterest(tool.Handle,v,0)
+                        firetouchinterest(tool.Handle,v,1)
+
+
+        All_Black_People_Should_Pick_Cotton = true	        
+        wait() 
+        All_Black_People_Should_Pick_Cotton = false
+
+end
+                    end
+                end
+	end)
+
+end
+end)
+game.Players.LocalPlayer.CharacterAdded:Connect(function()
+game.Players.LocalPlayer.Character.ChildAdded:Connect(function(tool)
+	if tool:IsA("Tool") then
+		
+	tool.Handle.Touched:Connect(function(hit)
+		if hit.Parent:FindFirstChildWhichIsA("Humanoid")and All_Black_People_Should_Pick_Cotton == false then
+                for i,v in next, hit.Parent:GetChildren() do
+                    if v:IsA("BasePart") then
+                        firetouchinterest(tool.Handle,v,0)
+                        firetouchinterest(tool.Handle,v,1)
+
+
+        All_Black_People_Should_Pick_Cotton = true	        
+        wait() 
+        All_Black_People_Should_Pick_Cotton = false
+
+end
+                    end
+                end
+	end)
+
+end
+end)
+end)
