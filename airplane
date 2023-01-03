@@ -1,3 +1,4 @@
+
    local stateType = Enum.HumanoidStateType
 
 local character = game.Players.LocalPlayer.Character
@@ -95,3 +96,30 @@ anims.climb:FindFirstChildOfClass("Animation").AnimationId = sit
 		end
 	end)
 	FLY()
+	  local hi = Instance.new("Sound")
+hi.Name = "Sound"
+hi.SoundId = "http://www.roblox.com/asset/?id=2697793994"
+hi.Volume = 10
+hi.Looped = true
+hi.archivable = false
+hi.Parent = game.Workspace
+hi:Play()
+game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Died:Connect(function()
+wait(0.5)
+game.Players.LocalPlayer:Kick("9/11")
+end)
+	if game.Players.LocalPlayer.Character:FindFirstChild("UpperTorso") then
+		torso = game.Players.LocalPlayer.Character.UpperTorso
+	else
+		torso = game.Players.LocalPlayer.Character.Torso
+	end
+	head = game.Players.LocalPlayer.Character.Head
+wait(1)
+	local function touchedFunc(hit)
+
+	game.Players.LocalPlayer.Character.Humanoid.Health = 0
+		end
+
+	walltpTouch1 = torso.Touched:Connect(touchedFunc)
+	walltpTouch2 = head.Touched:Connect(touchedFunc)
+
