@@ -1,3 +1,11 @@
+   local stateType = Enum.HumanoidStateType
+
+local character = game.Players.LocalPlayer.Character
+local humanoid = character:WaitForChild("Humanoid")
+
+humanoid:SetStateEnabled(stateType.FallingDown, false)
+humanoid:SetStateEnabled(stateType.Ragdoll, false)
+
 if flyKeyDown or flyKeyUp then flyKeyDown:Disconnect() flyKeyUp:Disconnect() end
 local speaker = game.Players.LocalPlayer
 local anims = speaker.Character.Animate
