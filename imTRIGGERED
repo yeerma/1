@@ -1,0 +1,130 @@
+function Notify(titletxt, text, time)
+    local GUI = Instance.new("ScreenGui")
+    local Main = Instance.new("Frame", GUI)
+    local title = Instance.new("TextLabel", Main)
+    local message = Instance.new("TextLabel", Main)
+    GUI.Name = "NotificationOof"
+    GUI.Parent = game.CoreGui
+    Main.Name = "MainFrame"
+    Main.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
+    Main.BorderSizePixel = 0
+    Main.Position = UDim2.new(1, 5, 0, 50)
+    Main.Size = UDim2.new(0, 330, 0, 100)
+
+    title.BackgroundColor3 = Color3.new(0, 0, 0)
+    title.BackgroundTransparency = 0.89999997615814
+    title.Size = UDim2.new(1, 0, 0, 30)
+    title.Font = Enum.Font.SourceSansSemibold
+    title.Text = titletxt
+    title.TextColor3 = Color3.new(1, 1, 1)
+    title.TextSize = 17
+    
+    message.BackgroundColor3 = Color3.new(0, 0, 0)
+    message.BackgroundTransparency = 1
+    message.Position = UDim2.new(0, 0, 0, 30)
+    message.Size = UDim2.new(1, 0, 1, -30)
+    message.Font = Enum.Font.SourceSans
+    message.Text = text
+    message.TextColor3 = Color3.new(1, 1, 1)
+    message.TextSize = 16
+
+    wait(0.1)
+    Main:TweenPosition(UDim2.new(1, -330, 0, 50), "Out", "Sine", 0.5)
+    wait(time)
+    Main:TweenPosition(UDim2.new(1, 5, 0, 50), "Out", "Sine", 0.5)
+    wait(0.6)
+    GUI:Destroy();
+end
+getgenv().player = game:GetService("Players").LocalPlayer
+getgenv().team = true
+getgenv().head = false
+getgenv().Mouse = player:GetMouse()
+game:GetService("RunService").RenderStepped:Connect(function()
+  
+if Mouse.Target and Mouse.Target.Parent:FindFirstChildWhichIsA("Humanoid") and Mouse.Target.Parent:FindFirstChildWhichIsA("Humanoid").Health > 0  then
+local hit = Mouse.Target
+local HitPlayer = game.Players:FindFirstChild(hit.Parent.Name)
+if team == true then
+spawn(function()
+ if head == true then
+    if hit.Parent:FindFirstChildWhichIsA("Humanoid") and hit.Parent:FindFirstChildWhichIsA("Humanoid").Health > 0 and HitPlayer.Team ~= game.Players.LocalPlayer.Team and (hit.Name == "Head" or hit.Name == "HeadHB") then
+        mouse1press()
+        wait()
+        mouse1release()
+        
+        end
+else
+    if hit.Parent:FindFirstChildWhichIsA("Humanoid") and hit.Parent:FindFirstChildWhichIsA("Humanoid").Health > 0 and HitPlayer.Team ~= game.Players.LocalPlayer.Team then
+        mouse1press()
+        wait()
+        mouse1release()
+        
+        end
+ end
+end)
+else
+spawn(function()
+ if head == true then
+    if hit.Parent:FindFirstChildWhichIsA("Humanoid") and hit.Parent:FindFirstChildWhichIsA("Humanoid").Health > 0  and game.Players:FindFirstChild(hit.Parent.Name) and (hit.Name == "Head" or hit.Name == "HeadHB")  then
+        mouse1press()
+        wait()
+        mouse1release()
+        
+        end
+else
+    if hit.Parent:FindFirstChildWhichIsA("Humanoid") and hit.Parent:FindFirstChildWhichIsA("Humanoid").Health > 0   then
+        mouse1press()
+        wait()
+        mouse1release()
+        
+        end
+ end
+end)
+end
+end
+end)
+
+Mouse.KeyDown:connect(function(key)
+if key == "x" then
+if team == false then
+getgenv().team = true
+Notify("hey", "Team On", 1.5)
+else
+    getgenv().team = false
+Notify("hey", "Team Off", 1.5)
+end
+end
+end)
+Mouse.KeyDown:connect(function(key)
+if key == "z" then
+if head == false then
+getgenv().head = true
+Notify("hey", "you got some Head", 1.5)
+else
+    getgenv().head = false
+Notify("hey", "Head Off", 1.5)
+end
+end
+end)
+while true do
+    wait()
+       spawn(function()
+       if Mouse.Target and Mouse.Target.Parent:FindFirstChildWhichIsA("Humanoid") then
+
+    for i,i_support_edp445_aka_enter_dat_prison_for_45_years in next, Mouse.Target.Parent:GetChildren() do
+                    if i_support_edp445_aka_enter_dat_prison_for_45_years:IsA("Accessory") and i_support_edp445_aka_enter_dat_prison_for_45_years:FindFirstChild("Handle") then
+i_support_edp445_aka_enter_dat_prison_for_45_years.Handle.Size = Vector3.new(0,0,0)
+                    end
+   
+       end
+       end
+      end)
+end
+while true do
+    wait()
+       spawn(function()
+if Mouse.Target and Mouse.Target.Transparency == 0 and Mouse.Target.CanCollide == false and Mouse.Target.Parent:FindFirstChildWhichIsA("Humanoid") == nil then
+     v:Destroy()
+     end
+      end)
+end
