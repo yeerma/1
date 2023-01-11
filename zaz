@@ -109,15 +109,15 @@ getgenv().fakeasscps = 0
 
   e:Button("click cookie",function()
       if oneper == true then
-      getgenv().cookies = cookies + (clicknumber+(fakeasscps*0.05)) *rebirth
+      getgenv().cookies = cookies + (clicknumber+(fakeasscps*0.05)*rebirth) 
       else
-        getgenv().cookies = cookies + clicknumber   *rebirth
+        getgenv().cookies = cookies + (clicknumber*rebirth)   
           end
       timer.Text = math.round(cookies)
 
   end)
   e:Button("Current cps",function()
-Notify("your current cps is", fakeasscps, 2)
+Notify("your current cps is", fakeasscps*rebirth, 2)
   end)
 
 
@@ -130,8 +130,8 @@ Notify("your current cps is", fakeasscps, 2)
      
       if cookies >=price1 then
       getgenv().cookies = cookies - price1
-      getgenv().cps = cps + 1  *rebirth
-      getgenv().fakeasscps = fakeasscps + (3*multi)  *rebirth
+      getgenv().cps = cps + 1  
+      getgenv().fakeasscps = fakeasscps + (3*multi)  
       price1 = price1 + (100*0.25)
       timer.Text = math.round(cookies)
       price1variable:Refresh("+3 -"..price1)
@@ -146,9 +146,9 @@ Notify("your current cps is", fakeasscps, 2)
      e:Button("Granny",function()
      
       if cookies >=price2 then
-       getgenv().cps = cps + 11 *rebirth
+       getgenv().cps = cps + 11 
         getgenv().cookies = cookies - price2
-getgenv().fakeasscps = fakeasscps + (33*multi) *rebirth
+getgenv().fakeasscps = fakeasscps + (33*multi) 
       price2 = price2 + (1000*0.25)
       timer.Text = math.round(cookies)
       price2variable:Refresh("+33 -"..price2)
@@ -163,9 +163,9 @@ getgenv().fakeasscps = fakeasscps + (33*multi) *rebirth
        e:Button("farm",function()
       
       if cookies >=price3 then
-       getgenv().cps = cps + 120 *rebirth
+       getgenv().cps = cps + 120 
        getgenv().cookies = cookies - price3
-getgenv().fakeasscps = fakeasscps + (360*multi) *rebirth
+getgenv().fakeasscps = fakeasscps + (360*multi) 
       price3 = price3 + (10000*0.25)
       timer.Text = math.round(cookies)
       price3variable:Refresh("+360 -"..price3)
@@ -180,9 +180,9 @@ getgenv().fakeasscps = fakeasscps + (360*multi) *rebirth
        e:Button("1800s farm",function()
       
       if cookies >=price4 then
-      getgenv().cps = cps + 1300 *rebirth
+      getgenv().cps = cps + 1300 
        getgenv().cookies = cookies - price4
-getgenv().fakeasscps = fakeasscps + (3900*multi) *rebirth
+getgenv().fakeasscps = fakeasscps + (3900*multi) 
       price4 = price4 + (100000*0.25)
       timer.Text = math.round(cookies)
       price4variable:Refresh("+3900 -"..price4)
@@ -197,9 +197,9 @@ getgenv().fakeasscps = fakeasscps + (3900*multi) *rebirth
          e:Button("ghetto bank",function()
       
       if cookies >=price5 then
-      getgenv().cps = cps + 14000 *rebirth
+      getgenv().cps = cps + 14000 
        getgenv().cookies = cookies - price5
-getgenv().fakeasscps = fakeasscps + (42000*multi) *rebirth
+getgenv().fakeasscps = fakeasscps + (42000*multi) 
       price5 = price5 + (1000000*0.25)
       timer.Text = math.round(cookies)
       price5variable:Refresh("+42000 -"..price5)
@@ -214,9 +214,9 @@ getgenv().fakeasscps = fakeasscps + (42000*multi) *rebirth
            e:Button("cookie volcano",function()
       
       if cookies >=price6 then
-      getgenv().cps = cps + 150000 *rebirth
+      getgenv().cps = cps + 150000 
        getgenv().cookies = cookies - price6
-     getgenv().fakeasscps = fakeasscps + (450000*multi) *rebirth
+     getgenv().fakeasscps = fakeasscps + (450000*multi) 
       price6 = price6 + (10000000*0.25)
       timer.Text = math.round(cookies)
       price6variable:Refresh("+450000 -"..price6)
@@ -231,9 +231,9 @@ getgenv().fakeasscps = fakeasscps + (42000*multi) *rebirth
                       e:Button("roblox cookie tycoon",function()
       
       if cookies >=price7 then
-       getgenv().cps = cps + 1500000 *rebirth
+       getgenv().cps = cps + 1500000 
        getgenv().cookies = cookies - price7
-       getgenv().fakeasscps = fakeasscps + (4500000*multi) *rebirth
+       getgenv().fakeasscps = fakeasscps + (4500000*multi) 
       price7 = price7 + (100000000*0.25)
       timer.Text = math.round(cookies)
       price7variable:Refresh("-"..price7)
@@ -248,9 +248,9 @@ getgenv().fakeasscps = fakeasscps + (42000*multi) *rebirth
                              e:Button("lua console",function()
       
       if cookies >=price8 then
-       getgenv().cookies = cookies - price8 *rebirth
+       getgenv().cookies = cookies - price8 
          getgenv().cps = cps + 150000000
-        getgenv().fakeasscps = fakeasscps + (450000000*multi) *rebirth
+        getgenv().fakeasscps = fakeasscps + (450000000*multi) 
       price8 = price8 + (1000000000*0.25)
       
       timer.Text = math.round(cookies)
@@ -406,7 +406,7 @@ end)
   upgrade8 = false
   upgrade9 = false
   upgrade10 = false
-  multi = multi * multi
+  multi = 1
  getgenv().cookies = 0  
   cooldown = 0.333
  getgenv().clicknumber = 1
@@ -450,10 +450,9 @@ end)
          end) 
  while true  do
          wait(cooldown)
-                   getgenv().cookies = cookies + (cps*multi)
+                   getgenv().cookies = cookies + (cps*rebirth)
           
           timer.Text = math.round(cookies)
  end
-
 
 
