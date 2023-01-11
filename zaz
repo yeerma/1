@@ -434,7 +434,7 @@ end)
 clicknumber = clicknumber *10
 end)
 y:Box("Game.Earn()","number",function(value) -- "number" or "string"
-cookies = cookies + value
+getgenv().cookies = cookies + value
 end)
 else
     Notify("invalid cheat","sesame seeds", 2)
@@ -446,7 +446,6 @@ end)
           
           timer.Text = math.round(cookies)
  end
-
 
 
 
