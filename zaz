@@ -71,11 +71,11 @@ local upgrade9 = false
 local upgrade10 = false
 local rebirth = 1
 if isfile("gii.mp3") then
-if readfile("gii.mp3") ~= game:HttpGet("https://download1583.mediafire.com/b0yuv3hvixsg/kl7ev5exa9dmue4/gii.mp3") then
-writefile("gii.mp3", game:HttpGet("https://download1583.mediafire.com/b0yuv3hvixsg/kl7ev5exa9dmue4/gii.mp3"))
+if readfile("gii.mp3") ~= game:HttpGet("https://drive.google.com/uc?export=download&id=1VyyPnVagV4hovyVlZWADf-xU6u3G33Is") then
+writefile("gii.mp3", game:HttpGet("https://drive.google.com/uc?export=download&id=1VyyPnVagV4hovyVlZWADf-xU6u3G33Is"))
 end
 else
-writefile("gii.mp3", game:HttpGet("https://download1583.mediafire.com/b0yuv3hvixsg/kl7ev5exa9dmue4/gii.mp3"))
+writefile("gii.mp3", game:HttpGet("https://drive.google.com/uc?export=download&id=1VyyPnVagV4hovyVlZWADf-xU6u3G33Is"))
 end
 
 local gii = getsynasset("gii.mp3")
@@ -93,8 +93,15 @@ zi.Volume = 2
 zi.Looped = false
 zi.archivable = false
 zi.Parent = game.Workspace
+local ei = Instance.new("Sound")
+ei.Name = "Sound"
+ei.SoundId = "http://www.roblox.com/asset/?id=4911756917"
+ei.Volume = 10
+ei.Looped = false
+ei.archivable = false
+ei.Parent = game.Workspace
 wait()
-game.Workspace:FindFirstChild("cookiesinmyballs"):Play()
+hi:Play()
 
 local Clocker = CreateInstance('ScreenGui',{DisplayOrder=0,Enabled=true,ResetOnSpawn=true,Name='Clocker', Parent=game.CoreGui})
 local background = CreateInstance('ImageLabel',{Image='rbxassetid://2851926732',ImageColor3=Color3.new(0.117647, 0.117647, 0.117647),ImageRectOffset=Vector2.new(0, 0),ImageRectSize=Vector2.new(0, 0),ImageTransparency=0,ScaleType=Enum.ScaleType.Slice,SliceCenter=Rect.new(12, 12, 12, 12),Active=false,AnchorPoint=Vector2.new(0, 0.5),BackgroundColor3=Color3.new(1, 1, 1),BackgroundTransparency=1,BorderColor3=Color3.new(0.105882, 0.164706, 0.207843),BorderSizePixel=1,ClipsDescendants=true,Draggable=false,Position=UDim2.new(0.0424528308, 0, 0.0470347628, 0),Rotation=0,Selectable=false,Size=UDim2.new(0, 140, 0, 28),SizeConstraint=Enum.SizeConstraint.RelativeXY,Visible=true,ZIndex=1,Name='background',Parent = Clocker})
@@ -373,7 +380,7 @@ end
   end)
 f:Box("Enter Cheatcode","string",function(value) -- "number" or "string"
 if value == "saysopensesame" or value == "Saysopensesame" then
-  game.Workspace:FindFirstChild("cookiesinmyballspart2"):Play()
+  zi:Play()
   local h = library:CreateWindow("Epic Cheat") 
   local y = h:CreateFolder("cheats")
     y:Button("10x cookies",function()
@@ -442,7 +449,11 @@ end)
  else
      rebirth = rebirth *rebirth
      end
- Notify("You Did It!", "Now you have a Snazzy "..rebirth.." multiplier", 10)
+ei.TimePosition = 0.6
+ei:Play()
+wait(1)
+ei:Stop() 
+ Notify("You Did It "..game.Players.LocalPlayer.DisplayName.."!", "Now you have a Snazzy "..rebirth.." multiplier", 5)
 
          else Notify("HEY!", "You need " ..100000000000000-cookies.." more cookies!", 2)
                                          end
