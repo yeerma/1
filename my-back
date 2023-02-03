@@ -1,0 +1,49 @@
+getgenv().ssss = game.Players.LocalPlayer:GetMouse()
+   local Anim = Instance.new("Animation")
+   Anim.AnimationId = "rbxassetid://180436148"
+   local k = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(Anim)
+getgenv().Lzzz = false
+ssss.KeyDown:connect(function(key)
+if key == "z" then
+    
+if Lzzz == false then
+getgenv().Lzzz = true
+getgenv().currentnormal = game:GetService("Workspace").Gravity
+game:GetService("Workspace").Gravity = 196.2
+game:GetService("Players").LocalPlayer.Character:PivotTo(game:GetService("Players").LocalPlayer.Character:GetPivot() * CFrame.Angles(2, 0, 0))
+wait(0.5)
+game:GetService("Players").LocalPlayer.Character.Humanoid.PlatformStand = true
+game.Players.LocalPlayer.Character.Animate.Disabled = true
+
+   k:Play()
+   k:AdjustSpeed(10)
+   
+game.Players.LocalPlayer.Character.Animate.Disabled = true
+   else
+getgenv().Lzzz = false
+game:GetService("Workspace").Gravity = currentnormal
+game:GetService("Players").LocalPlayer.Character.Humanoid.PlatformStand = false
+game:GetService("Players").LocalPlayer.Character.Humanoid.Jump = true
+   k:Stop()
+ 
+game.Players.LocalPlayer.Character.Animate.Disabled = false
+local BeenASecond, V3 = false, Vector3.new(0, 0, 0)
+	delay(0, function()
+		BeenASecond = true
+	end)
+	while not BeenASecond do
+		for _, v in ipairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+			if v.IsA(v, "BasePart") then
+				v.Velocity, v.RotVelocity = V3, V3
+			end
+		end
+		wait()
+	end
+    end
+end
+end)
+game:GetService("RunService").RenderStepped:Connect(function()
+if Lzzz == true then
+    	    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(.075*math.sin(45*tick()), .075*math.sin(45*tick()),.075*math.sin(45*tick())) --angle*math.sin(velocity*tick())
+end
+    end)
