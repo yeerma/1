@@ -1,0 +1,78 @@
+getgenv().bpm = 158 
+getgenv().spinnies = false
+getgenv().double = false
+local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wall%20v3')))()
+local w = library:CreateWindow("Around")
+
+local b = w:CreateFolder("The World")
+b:Box("BPM","number",function(value) 
+getgenv().bpm = value
+end)
+b:Button("Double Speed",function()
+getgenv().double = true
+end)
+
+b:Button("Normal Speed",function()
+getgenv().double = false
+end)
+
+b:Button("Toggle Spinnies",function()
+if getgenv().spinnies == false then
+    getgenv().spinnies = true
+for i,v in pairs(game.Players.LocalPlayer.Character.Humanoid:GetPlayingAnimationTracks()) do
+	v:Stop()
+end
+game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').AutoRotate = false
+    spawn(function()
+while spinnies == true do
+    local start_time = os.clock() 
+
+    for i = 1, 360, 1 do
+        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame *= CFrame.Angles(0, math.rad(1), 0) 
+
+        local elapsed_time = os.clock() - start_time 
+        getgenv().double = double
+        if double == true then
+            getgenv().tstss = 60
+            else
+            getgenv().tstss = 120
+                end
+        local target_time = (tstss / bpm / 360) * i 
+        if elapsed_time < target_time then
+            wait(target_time - elapsed_time) 
+        end
+        end
+ end
+end)
+    game.Players.LocalPlayer.Character.Animate.Disabled = true
+    else
+        getgenv().double = double
+        getgenv().spinnies = false
+for i,v in pairs(game.Players.LocalPlayer.Character.Humanoid:GetPlayingAnimationTracks()) do
+	v:Stop()
+end        
+game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').AutoRotate = true
+        spawn(function()
+while spinnies == true do
+    local start_time = os.clock() 
+
+    for i = 1, 360, 1 do
+        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame *= CFrame.Angles(0, math.rad(1), 0) 
+
+        local elapsed_time = os.clock() - start_time 
+        
+        if double == true then
+            local tstss = 60
+            else
+                local tstss = 120
+                end
+        local target_time = (tstss / bpm / 360) * i 
+        if elapsed_time < target_time then
+            wait(target_time - elapsed_time) 
+        end
+        end
+ end
+end)
+        game.Players.LocalPlayer.Character.Animate.Disabled = false
+        end
+end)
