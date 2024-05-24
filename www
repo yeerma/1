@@ -116,13 +116,14 @@ if game:GetService("Players").LocalPlayer.Character.PrimaryPart  and getClosestP
     local targetCFrame = CFrame.new(Part.Position, TargetPart.Position) * CFrame.Angles(math.rad(0), math.rad(25), math.rad(0))
 
     -- Call the smoothTurn function here
-    smoothTurn(Part, targetCFrame, 0.5)
-
-Part.CFrame = CFrame.new(Part.Position, TargetPart.Position) * CFrame.Angles(math.rad(0), math.rad(25), math.rad(0))
 
 			game:GetService("Players").LocalPlayer.Character.Humanoid:MoveTo(getClosestPlayer().Character.HumanoidRootPart.CFrame * Vector3.new(-3, 0, 0))
 if getClosestPlayer().Character.Humanoid:GetState() == Enum.HumanoidStateType.Freefall then
 game.Players.LocalPlayer.Character.Humanoid.Jump = true
+    smoothTurn(Part, targetCFrame, 0.5)
+
+Part.CFrame = CFrame.new(Part.Position, TargetPart.Position) * CFrame.Angles(math.rad(0), math.rad(25), math.rad(0))
+
 end
                
 
