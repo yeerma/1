@@ -5,10 +5,10 @@ local w = library:CreateWindow("Sword Fight") -- Creates the window
 
 local b = w:CreateFolder("Bot") -- Creates the folder(U will put here your buttons,etc)
 
-b:Slider("Slider",{
-    min = 0; -- min value of the slider
-    max = 1; -- max value of the slider
-    precise = true; -- max 2 decimals
+b:Slider("Roto Speed",{
+    min = 0; 
+    max = 1; 
+    precise = true;
 },function(value)
 getgenv().HowFastDanSchneiderCatchesYou = value
 end)
