@@ -133,7 +133,7 @@ local RotateX, RotateY, RotateZ = 0, 0, 0
             Part.CFrame = newCFrame
 
 
-			game:GetService("Players").LocalPlayer.Character.Humanoid:MoveTo(getClosestPlayer().Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, 3).p)
+			game:GetService("Players").LocalPlayer.Character.Humanoid:MoveTo(getClosestPlayer().Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -3).p)
 if getClosestPlayer().Character.Humanoid:GetState() == Enum.HumanoidStateType.Freefall then
 game.Players.LocalPlayer.Character.Humanoid.Jump = true
 end
