@@ -22,8 +22,8 @@ b:Slider("Attak Ranga",{
 getgenv().HowMuchDanSchneiderTouchesYou = value
 end)
 b:Slider("Attak Ranga",{
-    min = -13; 
-    max = 13; 
+    min = 0; 
+    max = 100; 
     precise = false;
 },function(value)
 getgenv().Wherehetouchu = value
@@ -141,7 +141,7 @@ local RotateX, RotateY, RotateZ = 0, 0, 0
             Part.CFrame = newCFrame
 
 
-			game:GetService("Players").LocalPlayer.Character.Humanoid:MoveTo(getClosestPlayer().Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, Wherehetouchu).p)
+			game:GetService("Players").LocalPlayer.Character.Humanoid:MoveTo(getClosestPlayer().Character.HumanoidRootPart.CFrame * CFrame.new(0, Wherehetouchu, 0).p)
 if getClosestPlayer().Character.Humanoid:GetState() == Enum.HumanoidStateType.Freefall then
 game.Players.LocalPlayer.Character.Humanoid.Jump = true
 end
