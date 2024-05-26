@@ -4,7 +4,7 @@ local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/bloo
 
 local w = library:CreateWindow("Sword Fight") -- Creates the window
 
-local b = w:CreateFolder("Bot") -- Creates the folder(U will put here your buttons,etc)
+local b = w:CreateFolder("Bot") -- Creates the folder(U will put here your buttons,etc)a
 
 b:Slider("Roto Speed",{
     min = 0; 
@@ -128,7 +128,7 @@ local nigger = getClosestPlayer()
         if game:GetService("Players").LocalPlayer.Character.PrimaryPart  and getClosestPlayer() ~= nil and Daddy_Catches_You == true then
             local TargetPart = getClosestPlayer().Character.HumanoidRootPart
             local Part = game.Players.LocalPlayer.Character.HumanoidRootPart
-local offset = Vector3.new(0, 25, 0)
+local offset = Vector3.new(0, 0, -5)
 local targetPosition = TargetPart.Position + TargetPart.CFrame:vectorToWorldSpace(offset)
 local RotateX, RotateY, RotateZ = 0, 0, 0
             local newCFrame = Part.CFrame:Lerp(CFrame.new(Part.Position, targetPosition), HowFastDanSchneiderCatchesYou)
