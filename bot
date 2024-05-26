@@ -1,5 +1,6 @@
 getgenv().HowFastDanSchneiderCatchesYou = 1
 getgenv().HowMuchDanSchneiderTouchesYou = 15
+getgenv().WhereDanSchneiderTouchesYou = 0
 local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wall%20v3')))()
 
 local w = library:CreateWindow("Sword Fight") -- Creates the window
@@ -18,7 +19,12 @@ b:Slider("Attak Ranga",{
     max = 15; 
     precise = false;
 },function(value)
-getgenv().HowMuchDanSchneiderTouchesYou = value
+b:Slider("Side to attak",{
+    min = -10; 
+    max = 10; 
+    precise = false;
+},function(value)
+getgenv().WhereDanSchneiderTouchesYou = value
 end)
 getgenv().Daddy_Catches_You = false
 
@@ -133,7 +139,7 @@ local RotateX, RotateY, RotateZ = 0, 0, 0
             Part.CFrame = newCFrame
 
 
-			game:GetService("Players").LocalPlayer.Character.Humanoid:MoveTo(getClosestPlayer().Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -3).p)
+			game:GetService("Players").LocalPlayer.Character.Humanoid:MoveTo(getClosestPlayer().Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, WhereDanSchneiderTouchesYou).p)
 if getClosestPlayer().Character.Humanoid:GetState() == Enum.HumanoidStateType.Freefall then
 game.Players.LocalPlayer.Character.Humanoid.Jump = true
 end
