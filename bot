@@ -128,13 +128,12 @@ local nigger = getClosestPlayer()
         if game:GetService("Players").LocalPlayer.Character.PrimaryPart  and getClosestPlayer() ~= nil and Daddy_Catches_You == true then
             local TargetPart = getClosestPlayer().Character.HumanoidRootPart
             local Part = game.Players.LocalPlayer.Character.HumanoidRootPart
-local offset = Vector3.new(0, -5, 0)
 local RotateX, RotateY, RotateZ = 0, 0, 0
-            local newCFrame = Part.CFrame:Lerp((CFrame.new(TargetPart.Position, TargetPart.Position + TargetPart.CFrame.LookVector) * CFrame.new(offset)), HowFastDanSchneiderCatchesYou)
+            local newCFrame = Part.CFrame:Lerp(CFrame.new(Part.Position, TargetPart.Position), HowFastDanSchneiderCatchesYou)
             Part.CFrame = newCFrame
 
 
-			game:GetService("Players").LocalPlayer.Character.Humanoid:MoveTo(getClosestPlayer().Character.HumanoidRootPart.CFrame * Vector3.new(-3, 0, 0))
+			game:GetService("Players").LocalPlayer.Character.Humanoid:MoveTo(getClosestPlayer().Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, 3).p)
 if getClosestPlayer().Character.Humanoid:GetState() == Enum.HumanoidStateType.Freefall then
 game.Players.LocalPlayer.Character.Humanoid.Jump = true
 end
