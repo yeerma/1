@@ -135,6 +135,8 @@ if Players.LocalPlayer.Character.PrimaryPart and getClosestPlayer() ~= nil and D
     Part.CFrame = rotatedCFrame
     local moveToPosition = TargetPart.CFrame * CFrame.new(-3, 0, 0)
     Players.LocalPlayer.Character.Humanoid:MoveTo(moveToPosition.p)
+    local rotatedCFrame = newCFrame * CFrame.Angles(0, math.rad(25), 0)
+    Part.CFrame = rotatedCFrame
     if getClosestPlayer().Character.Humanoid:GetState() == Enum.HumanoidStateType.Freefall then
         Players.LocalPlayer.Character.Humanoid.Jump = true
     end
