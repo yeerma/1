@@ -13,6 +13,7 @@ b:Slider("Roto Speed",{
 },function(value)
 getgenv().HowFastDanSchneiderCatchesYou = value
 end)
+
 b:Slider("Attak Ranga",{
     min = 0; 
     max = 15; 
