@@ -13,7 +13,6 @@ b:Slider("Roto Speed",{
 },function(value)
 getgenv().HowFastDanSchneiderCatchesYou = value
 end)
-
 b:Slider("Attak Ranga",{
     min = 0; 
     max = 15; 
@@ -126,20 +125,20 @@ end)
 end
 end)
 local nigger = getClosestPlayer()
-if game:GetService("Players").LocalPlayer.Character.PrimaryPart and getClosestPlayer() ~= nil and Daddy_Catches_You == true then
+local Players = game:GetService("Players")
+
+if Players.LocalPlayer.Character.PrimaryPart and getClosestPlayer() ~= nil and Daddy_Catches_You == true then
     local TargetPart = getClosestPlayer().Character.HumanoidRootPart
-    local Part = game.Players.LocalPlayer.Character.HumanoidRootPart
-    local lookAtCFrame = CFrame.new(Part.Position, TargetPart.Position)
-    local rotationAngle = math.rad(25)  -- Convert degrees to radians
-    local rotatedCFrame = lookAtCFrame * CFrame.Angles(0, rotationAngle, 0)
-    local newCFrame = Part.CFrame:Lerp(rotatedCFrame, HowFastDanSchneiderCatchesYou)
-    Part.CFrame = newCFrame
-    game:GetService("Players").LocalPlayer.Character.Humanoid:MoveTo(getClosestPlayer().Character.HumanoidRootPart.Position - Vector3.new(3, 0, 0))
+    local Part = Players.LocalPlayer.Character.HumanoidRootPart
+    local newCFrame = Part.CFrame:Lerp(CFrame.new(Part.Position, TargetPart.Position), HowFastDanSchneiderCatchesYou)
+    local rotatedCFrame = newCFrame * CFrame.Angles(0, math.rad(25), 0)
+    Part.CFrame = rotatedCFrame
+    local moveToPosition = TargetPart.CFrame * CFrame.new(-3, 0, 0)
+    Players.LocalPlayer.Character.Humanoid:MoveTo(moveToPosition.p)
     if getClosestPlayer().Character.Humanoid:GetState() == Enum.HumanoidStateType.Freefall then
-        game.Players.LocalPlayer.Character.Humanoid.Jump = true
+        Players.LocalPlayer.Character.Humanoid.Jump = true
     end
 end
-
 
     
     end)
