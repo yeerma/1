@@ -117,7 +117,7 @@ getgenv().Daddy_Catches_You = false
 
 ssss.KeyDown:connect(function(key)
 if key == "x" then
-if Daddy_Catches_You == false then
+if Daddy_Catches_You == false and getClosestPlayer() ~= nil then
     getgenv().Daddy_Catches_You = true
     game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass('Humanoid').AutoRotate  = false
    else
