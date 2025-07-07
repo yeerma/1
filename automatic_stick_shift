@@ -1,0 +1,219 @@
+getgenv().HowFastidfk = 1
+getgenv().HowMuchDanSchneiderTouchesYou = 6
+getgenv().specialvalue = 100000
+getgenv().ActivationRange = 150
+getgenv().useFireTouchInterest = false
+
+local library =
+    loadstring(game:HttpGet(("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wall%20v3")))()
+
+local w = library:CreateWindow("Sword Fight")
+
+local b = w:CreateFolder("Bot v9000")
+b:Slider(
+    "Blunt Rotation Speed",
+    {
+        min = 0,
+        max = 1,
+        precise = true
+    },
+    function(value)
+        getgenv().HowFastidfk = value
+    end
+)
+b:Slider(
+    "DMG Ranga",
+    {
+        min = 0,
+        max = 15,
+        precise = false
+    },
+    function(value)
+        getgenv().HowMuchDanSchneiderTouchesYou = value
+    end
+)
+b:Slider(
+    "Activation Range",
+    {
+        min = 0,
+        max = 150,
+        precise = false
+    },
+    function(value)
+        getgenv().ActivationRange = value
+    end
+)
+b:Toggle(
+    "Use Fire Touch Interest",
+    function(value)
+        getgenv().useFireTouchInterest = value
+    end
+)
+getgenv().Daddy_Catches_You = false
+
+local localPlayer = game:GetService("Players").LocalPlayer
+local character, humanigga, rootbear, alignOrientation
+local currentTarget = nil
+
+local function setupCharacter(newCharacter)
+    character = newCharacter
+    humanigga = character:WaitForChild("Humanoid")
+    rootbear = character:WaitForChild("HumanoidRootPart")
+
+    local attachment = Instance.new("Attachment", rootbear)
+    alignOrientation = Instance.new("AlignOrientation", rootbear)
+
+    alignOrientation.Attachment0 = attachment
+    alignOrientation.Mode = Enum.OrientationAlignmentMode.OneAttachment
+    alignOrientation.MaxTorque = 100000
+    alignOrientation.Responsiveness = 50
+    alignOrientation.Enabled = Daddy_Catches_You
+
+    local stateType = Enum.HumanoidStateType
+    humanigga:SetStateEnabled(stateType.FallingDown, false)
+    humanigga:SetStateEnabled(stateType.Ragdoll, false)
+    humanigga.AutoRotate = not Daddy_Catches_You
+end
+
+localPlayer.CharacterAdded:Connect(setupCharacter)
+if localPlayer.Character then
+    setupCharacter(localPlayer.Character)
+end
+
+local function getClosestPlayer()
+    local closestPlayer = nil
+    local shortestDistance = math.huge
+    local myChar = localPlayer.Character
+
+    if not (myChar and myChar:FindFirstChild("HumanoidRootPart")) then
+        return nil
+    end
+
+    for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+        if v.Name ~= localPlayer.Name then
+            if
+                v.Character and v.Character:FindFirstChild("Humanoid") and v.Character.Humanoid.Health > 0 and
+                    v.Character:FindFirstChild("HumanoidRootPart") and
+                    v.Character:FindFirstChild("Head")
+             then
+                if not v.Character:FindFirstChildOfClass("ForceField") then
+                    local magnitude =
+                        (v.Character.HumanoidRootPart.Position - myChar.HumanoidRootPart.Position).magnitude
+
+                    if magnitude < shortestDistance then
+                        closestPlayer = v
+                        shortestDistance = magnitude
+                    end
+                end
+            end
+        end
+    end
+    return closestPlayer
+end
+
+game:GetService("RunService").RenderStepped:Connect(
+    function()
+        if Daddy_Catches_You == true and currentTarget and currentTarget.Character then
+            spawn(
+                function()
+                    alignOrientation.MaxTorque = (specialvalue*HowFastidfk)
+                    local currentCharacter = game.Players.LocalPlayer.Character
+                    local tool = currentCharacter and currentCharacter:FindFirstChildOfClass("Tool")
+                    if tool and tool:FindFirstChild("Handle") then
+                        tool:Activate()
+
+                        local v = currentTarget.Character
+                        if
+                            v and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and
+                                v:FindFirstChild("HumanoidRootPart") and
+                                localPlayer:DistanceFromCharacter(v.HumanoidRootPart.Position) <=
+                                    HowMuchDanSchneiderTouchesYou
+                         then
+                            if getgenv().useFireTouchInterest then
+                                for _, v_part in next, v:GetChildren() do
+                                    if v_part:IsA("BasePart") then
+                                        firetouchinterest(tool.Handle, v_part, 0)
+                                        firetouchinterest(tool.Handle, v_part, 1)
+                                    end
+                                end
+                            end
+                        end
+                    end
+                end
+            )
+        end
+    end
+)
+
+local executed = false
+spawn(function()
+    if executed then return end
+    executed = true
+    getgenv().ssss = game.Players.LocalPlayer:GetMouse()
+
+    ssss.KeyDown:connect(
+        function(key)
+            if key == "x" then
+                Daddy_Catches_You = not Daddy_Catches_You
+                if Daddy_Catches_You then
+                    if humanigga and alignOrientation then
+                        humanigga.AutoRotate = false
+                        alignOrientation.Enabled = true
+                    end
+                else
+                    currentTarget = nil
+                    if humanigga and alignOrientation then
+                        humanigga.AutoRotate = true
+                        alignOrientation.Enabled = false
+                    end
+                end
+            end
+        end
+    )
+end)
+
+
+game:GetService("RunService").Heartbeat:Connect(function()
+    if Daddy_Catches_You then
+        currentTarget = getClosestPlayer()
+        if currentTarget and currentTarget.Character and currentTarget.Character:FindFirstChild("HumanoidRootPart") and rootbear and humanigga and alignOrientation then
+            local distance = (currentTarget.Character.HumanoidRootPart.Position - rootbear.Position).magnitude
+            if distance <= getgenv().ActivationRange then
+                local target = currentTarget
+                if target.Character.PrimaryPart then
+                    alignOrientation.CFrame = (CFrame.lookAt(rootbear.Position, Vector3.new(target.Character.PrimaryPart.Position.X, rootbear.Position.Y, target.Character.PrimaryPart.Position.Z)))*(CFrame.Angles(0, math.rad(25), 0))
+                    humanigga:MoveTo(target.Character.HumanoidRootPart.CFrame * CFrame.new(-3, 0, 0).p)
+                    local botState = humanigga:GetState()
+                    if target.Character.Humanoid:GetState() == Enum.HumanoidStateType.Freefall and botState ~= Enum.HumanoidStateType.Freefall and botState ~= Enum.HumanoidStateType.Jumping then
+                        humanigga:ChangeState(Enum.HumanoidStateType.Jumping)
+                    end
+                end
+            else
+                currentTarget = nil
+            end
+        end
+    end
+end)
+
+local UserInputService = game:GetService("UserInputService")
+local CoreGui = game:GetService("CoreGui")
+local uiWindow = nil
+
+for _, ui in ipairs(CoreGui:GetChildren()) do
+    if ui:FindFirstChild("HiI'mSexyDon'tTouchMePls") then
+        local foundWindow = ui:FindFirstChild("Window")
+        if foundWindow then
+            uiWindow = foundWindow
+            break
+        end
+    end
+end
+
+UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
+    if gameProcessedEvent then return end
+    if input.KeyCode == Enum.KeyCode.RightShift then
+        if uiWindow then
+            uiWindow.Visible = not uiWindow.Visible
+        end
+    end
+end)
