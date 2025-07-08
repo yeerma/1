@@ -1,6 +1,6 @@
-getgenv().HowFastidfk = 1
+getgenv().HowFastidfk = 10
 getgenv().HowMuchDanSchneiderTouchesYou = 6
-getgenv().specialvalue = 10000000
+getgenv().specialvalue = 10000
 getgenv().ActivationRange = 150
 getgenv().useFireTouchInterest = false
 
@@ -21,7 +21,7 @@ b:Slider(
     "Blunt Rotation Speed",
     {
         min = 0,
-        max = 1,
+        max = 10,
         precise = true
     },
     function(value)
@@ -72,7 +72,7 @@ local function setupCharacter(newCharacter)
 
     alignOrientation.Attachment0 = attachment
     alignOrientation.Mode = Enum.OrientationAlignmentMode.OneAttachment
-    alignOrientation.MaxTorque = 10000000
+    alignOrientation.MaxTorque = 10000
     alignOrientation.Responsiveness = 5000000
     alignOrientation.Enabled = false
 
