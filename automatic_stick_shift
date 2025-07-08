@@ -67,12 +67,12 @@ local function setupCharacter(newCharacter)
     alignOrientation.Mode = Enum.OrientationAlignmentMode.OneAttachment
     alignOrientation.MaxTorque = 100000
     alignOrientation.Responsiveness = 50
-    alignOrientation.Enabled = Daddy_Catches_You
+    alignOrientation.Enabled = false
 
     local stateType = Enum.HumanoidStateType
     humanigga:SetStateEnabled(stateType.FallingDown, false)
     humanigga:SetStateEnabled(stateType.Ragdoll, false)
-    humanigga.AutoRotate = not Daddy_Catches_You
+    humanigga.AutoRotate = true
 end
 
 localPlayer.CharacterAdded:Connect(setupCharacter)
@@ -155,12 +155,7 @@ spawn(function()
         function(key)
             if key == "x" then
                 Daddy_Catches_You = not Daddy_Catches_You
-                if Daddy_Catches_You then
-                    if humanigga and alignOrientation then
-                        humanigga.AutoRotate = false
-                        alignOrientation.Enabled = true
-                    end
-                else
+                if not Daddy_Catches_You then
                     currentTarget = nil
                     if humanigga and alignOrientation then
                         humanigga.AutoRotate = true
@@ -172,25 +167,41 @@ spawn(function()
     )
 end)
 
-
 game:GetService("RunService").Heartbeat:Connect(function()
-    if Daddy_Catches_You then
-        currentTarget = getClosestPlayer()
-        if currentTarget and currentTarget.Character and currentTarget.Character:FindFirstChild("HumanoidRootPart") and rootbear and humanigga and alignOrientation then
-            local distance = (currentTarget.Character.HumanoidRootPart.Position - rootbear.Position).magnitude
-            if distance <= getgenv().ActivationRange then
-                local target = currentTarget
-                if target.Character.PrimaryPart then
-                    alignOrientation.CFrame = (CFrame.lookAt(rootbear.Position, Vector3.new(target.Character.PrimaryPart.Position.X, rootbear.Position.Y, target.Character.PrimaryPart.Position.Z)))*(CFrame.Angles(0, math.rad(25), 0))
-                    humanigga:MoveTo(target.Character.HumanoidRootPart.CFrame * CFrame.new(-3, 0, 0).p)
-                    local botState = humanigga:GetState()
-                    if target.Character.Humanoid:GetState() == Enum.HumanoidStateType.Freefall and botState ~= Enum.HumanoidStateType.Freefall and botState ~= Enum.HumanoidStateType.Jumping then
-                        humanigga:ChangeState(Enum.HumanoidStateType.Jumping)
-                    end
+    if not Daddy_Catches_You then
+        return
+    end
+
+    currentTarget = getClosestPlayer()
+    
+    local targetIsInRange = false
+    if currentTarget and currentTarget.Character and currentTarget.Character:FindFirstChild("HumanoidRootPart") and rootbear then
+        local distance = (currentTarget.Character.HumanoidRootPart.Position - rootbear.Position).magnitude
+        if distance <= getgenv().ActivationRange then
+            targetIsInRange = true
+        end
+    end
+
+    if targetIsInRange then
+        if humanigga and alignOrientation then
+            humanigga.AutoRotate = false
+            alignOrientation.Enabled = true
+
+            local target = currentTarget
+            if target.Character.PrimaryPart then
+                alignOrientation.CFrame = (CFrame.lookAt(rootbear.Position, Vector3.new(target.Character.PrimaryPart.Position.X, rootbear.Position.Y, target.Character.PrimaryPart.Position.Z)))*(CFrame.Angles(0, math.rad(25), 0))
+                humanigga:MoveTo(target.Character.HumanoidRootPart.CFrame * CFrame.new(-3, 0, 0).p)
+                local botState = humanigga:GetState()
+                if target.Character.Humanoid:GetState() == Enum.HumanoidStateType.Freefall and botState ~= Enum.HumanoidStateType.Freefall and botState ~= Enum.HumanoidStateType.Jumping then
+                    humanigga:ChangeState(Enum.HumanoidStateType.Jumping)
                 end
-            else
-                currentTarget = nil
             end
+        end
+    else
+        currentTarget = nil
+        if humanigga and alignOrientation then
+            humanigga.AutoRotate = true
+            alignOrientation.Enabled = false
         end
     end
 end)
