@@ -10,6 +10,13 @@ local library =
 local w = library:CreateWindow("Sword Fight")
 
 local b = w:CreateFolder("Bot v9000")
+local niggalinkai = b:Label("Bot off",{
+    TextSize = 25; -- Self Explaining
+    TextColor = Color3.fromRGB(255,255,255); -- Self Explaining
+    BgColor = Color3.fromRGB(69,69,69); -- Self Explaining
+    
+}) 
+
 b:Slider(
     "Blunt Rotation Speed",
     {
@@ -154,6 +161,11 @@ spawn(function()
     ssss.KeyDown:connect(
         function(key)
             if key == "x" then
+                if Daddy_Catches_You == false then
+                niggalinkai:Refresh("Bot on")
+                else
+                niggalinkai:Refresh("Bot off")
+                end
                 Daddy_Catches_You = not Daddy_Catches_You
                 if not Daddy_Catches_You then
                     currentTarget = nil
